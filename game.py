@@ -15,19 +15,24 @@ clock = pygame.time.Clock()
 # Police pour aficher du texte
 font = pygame.font.Font(None, 36)
 
+# Initialiser 2 varibales pour mesurer le score de chacun apres un point gagne
+player1_score_new = 0
+player2_score_new = 0
+
 def reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y):
     """ 
     Fonction pour réinitialiser la balle lorsqu'un joueur gagne un point
     """
-    
     # TODO : RÉINITIALISER LA POSITION DE LA BALLE AU CENTRE DU JEU
     # Ici, vous devez redéfinir la position de la balle pour qu'elle soit au centre de la fenêtre du jeu en x (c'est-à-dire, sur la ligne pointillée)
-
+    ball_x = SCREEN_WIDTH//2
+    ball_y = SCREEN_HEIGHT//2
 
     # TODO : LANCEMENT DE LA BALLE APRÈS RÉINITIALISATION
     # Si le joueur 2 a gagné un point, relancer la balle de son côté (à la gauche) avec une position aléatoire en y (par en haut ou par en bas), à partir de la ligne pointillée
     # Si le joueur 1 a gagné un point, relancer la balle de son côté (à la droite) avec une position aléatoire en y (par en haut ou par en bas), à partir de la ligne pointillée
-
+    if player2_score_new == player1_score + 1: 
+        print('eeeeee')
     return ball_x, ball_y, ball_velocity_x, ball_velocity_y
 
 def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y, ball_velocity_x, ball_velocity_y):
