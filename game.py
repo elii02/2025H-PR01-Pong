@@ -151,13 +151,13 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
                 player1_y = player1_y 
 
             #Déplacement pour l'ordinateur (joueur 2)
-            if ball_y < player2_y + PADDLE_HEIGHT/2 - margin :
+            if ball_y < player2_y + PADDLE_HEIGHT/2 - margin and player2_y < 0 :
+                player2_y = 0
                 player2_y = player2_y + paddle_speed
-            elif ball_y > player2_y + PADDLE_HEIGHT/2 + margin:
+            elif ball_y > player2_y + PADDLE_HEIGHT/2 + margin and player2_y :
                 player2_y = player2_y - paddle_speed
 
-            #Limites de la raquette de l'ordinateur 
-            if pla
+            
 
            
 
