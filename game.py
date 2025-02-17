@@ -88,7 +88,25 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         # * Note 3 : Lorsque les raquettes atteignent le haut ou le bas de la fenêtre de jeu, elles ne doivent pas dépasser ces limites. 
         #          Assurez-vous que leur position reste dans les bornes définies par la hauteur de l'écran.
 
-
+        if game_mode == 'multi player':
+            #controle pour le joueur #1
+            if keys[pygame.K_w] and player1_y > 0:
+                player1_y = player1_y -(paddle_speed)
+            elif keys[pygame.K_w] and player1_y == PADDLE_HEIGHT:
+                player1_y = player1_y 
+            if keys[pygame.K_s] and player1_y < SCREEN_HEIGHT -PADDLE_HEIGHT:
+                player1_y = player1_y +(paddle_speed)
+            else:
+                player1_y = player1_y 
+            #controle pour le joueur #2
+            if keys[pygame.K_UP] and player2_y > 0:
+                player2_y = player2_y -(paddle_speed)
+            elif keys[pygame.K_UP]and player2_y == PADDLE_HEIGHT:
+                player2_y = player2_y 
+            if keys[pygame.K_UP] and player2_y < SCREEN_HEIGHT -PADDLE_HEIGHT:
+                player2_y = player2_y +(paddle_speed)
+            else:
+                player2_y = player2_y 
 
 
 
@@ -111,7 +129,39 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         #     - Pour le niveau "medium", la vitesse de déplacement de la raquette doit être égale à "paddle_speed - 4"
         #     - Pour le niveau "hard", la vitesse de déplacement de la raquette doit être égale à "paddle_speed"
 
-        
+        if game_mode == 'single player':
+            #Ajuster la vitesse de la raquette selon le nieveau de difficulte
+            if difficulty == 'easy':
+                paddle_speed = paddle_speed -5
+            elif difficulty == 'medium':
+                paddle_speed = paddle_speed -4
+            elif difficulty == 'hard':
+                paddle_speed = paddle_speed
+
+            margin = random.choices([20,40], [0.1, 0.9], k=1)
+            
+            #Déplacement pour le joueur #1
+            if keys[pygame.K_w] and player1_y > 0:
+                player1_y = player1_y -(paddle_speed)
+            elif keys[pygame.K_w] and player1_y == PADDLE_HEIGHT:
+                player1_y = player1_y 
+            if keys[pygame.K_s] and player1_y < SCREEN_HEIGHT -PADDLE_HEIGHT:
+                player1_y = player1_y +(paddle_speed)
+            else:
+                player1_y = player1_y 
+
+            #Déplacement pour l'ordinateur (joueur 2)
+            if ball_y < player2_y + PADDLE_HEIGHT/2 - margin :
+                player2_y = player2_y + paddle_speed
+            elif ball_y > player2_y + PADDLE_HEIGHT/2 + margin:
+                player2_y = player2_y - paddle_speed
+
+            #Limites de la raquette de l'ordinateur 
+            if pla
+
+           
+
+            
         
 
 
