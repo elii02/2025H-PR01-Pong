@@ -16,8 +16,8 @@ clock = pygame.time.Clock()
 font = pygame.font.Font(None, 36)
 
 # Initialiser 2 varibales pour mesurer le score de chacun apres un point gagne
-player1_score_new = 0
-player2_score_new = 0
+#player1_score_new = 0
+#player2_score_new = 0
 
 def reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y):
     """ 
@@ -30,7 +30,7 @@ def reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y):
     # TODO : LANCEMENT DE LA BALLE APRÈS RÉINITIALISATION
     # Si le joueur 2 a gagné un point, relancer la balle de son côté (à la gauche) avec une position aléatoire en y (par en haut ou par en bas), à partir de la ligne pointillée
     # Si le joueur 1 a gagné un point, relancer la balle de son côté (à la droite) avec une position aléatoire en y (par en haut ou par en bas), à partir de la ligne pointillée
-    if player1_score_new == player1_score +1 :
+    if player1_score == player1_score +1 :
         ball_y = random.randrange(SCREEN_HEIGHT)
         ball_velocity_x = BALL_SPEED_X
         ball_velocity_y = random.randrange(-1,1,0.01)*BALL_SPEED_Y
@@ -158,13 +158,6 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
                 player2_y = player2_y - paddle_speed
 
             
-
-           
-
-            
-        
-
-
         # TODO : GESTION DU MOUVEMENT DE LA BALLE 
         #
         # 1. Mettre à jour la position de la balle (les variables "ball_x" et "ball_y") en utilisant les variables "ball_velocity_x" et "ball_velocity_y".
@@ -175,19 +168,27 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         # 3. Gérer les collisions entre la balle et les raquettes. 
         #    Lorsque la balle frappe une raquette, sa direction horizontale doit être inversée.
 
+        ball_x = ball_x + ball_velocity_x
+        ball_y = ball_y + ball_velocity_y
+
+        if ball_y == 0 or ball_y == SCREEN_HEIGHT:
+            ball_velocity_y = -ball_velocity_y
+
+        if ball_x == PADDLE_WIDTH or ball_x == SCREEN_WIDTH - PADDLE_WIDTH:
+            ball_velocity_x = -ball_velocity_x
         
-
-
-
 
         # TODO : GESTION DES POINTS ET RÉINITIALISATION DE LA BALLE
         #
         # 1. Vous devez implémenter l'ajout de points lorsqu'un joueur manque la balle et qu'elle frappe l'un des murs.
         #
         # 2. Vous devez également réinitialiser la balle pour qu'elle réapparaisse dans le jeu à l'aide de la fonction "reset_ball" que vous avez implémenté
-
-
-
+        if ball_x == 0 :
+            player2_score = player2_score +1
+            reset_ball()
+        elif ball_x == SCREEN_WIDTH:
+            player1_score = player1_score +1
+            reset_ball()
 
 
         # Vérifier s'il y a un gagnant
