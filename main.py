@@ -23,7 +23,7 @@ ball_y = SCREEN_HEIGHT/2  # Remplacer "0" par votre réponse
 # TODO : INITIALISATION DU MOUVEMENT ALÉATOIRE DE LA BALLE
 # Ici, vous devez implémenter le mouvement de la balle dans une direction aléatoire (en x et en y), en définissant les vecteurs de vitesse de la balle, 
 # c'est-à-dire les variables ball_velocity_x et ball_velocity_y. Pour ce faire, vous devez utiliser les vitesses BALL_SPEED_X et BALL_SPEED_Y définies dans le fichier config.py
-rdm = random.choice([1, -1], k=1)
+rdm = random.choice([1, -1])
 ball_velocity_x = BALL_SPEED_X*rdm # Remplacer "0" par votre réponse
 ball_velocity_y = BALL_SPEED_Y*rdm # Remplacer "0" par votre réponse
 
