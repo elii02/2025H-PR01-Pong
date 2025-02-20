@@ -138,7 +138,7 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
             margin = int(margin_list[0])
 
             #Déplacement pour le joueur #1
-            if keys[pygame.K_w] and player1_y > PADDLE_HEIGHT:
+            if keys[pygame.K_w] and player1_y > 0:
                 player1_y = player1_y -(paddle_speed_adjusted)
             if keys[pygame.K_s] and player1_y < SCREEN_HEIGHT -PADDLE_HEIGHT:
                 player1_y = player1_y +(paddle_speed_adjusted)
