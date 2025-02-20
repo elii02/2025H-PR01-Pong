@@ -34,7 +34,7 @@ def reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y):
     ball_y = random.randrange(SCREEN_HEIGHT)
     ball_velocity_y = random.uniform(-1,1)*BALL_SPEED_Y
     if ball_x > SCREEN_WIDTH :
-        ball_velocity_x = BALL_SPEED_X
+        ball_velocity_x = BALL_SPEED_X*random.randint(30,80)
     if ball_x < 0 :
         ball_velocity_x = -1*(BALL_SPEED_X)
        
@@ -93,13 +93,13 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         #          Assurez-vous que leur position reste dans les bornes définies par la hauteur de l'écran.
         if game_mode == 'multi player':
             #controle pour le joueur #1
-            if keys[pygame.K_w] and player1_y > PADDLE_HEIGHT:
+            if keys[pygame.K_w] and player1_y > 0:
                 player1_y = player1_y - (paddle_speed)
             if keys[pygame.K_s] and player1_y < SCREEN_HEIGHT - PADDLE_HEIGHT:
                 player1_y = player1_y + (paddle_speed)
 
             #controle pour le joueur #2
-            if keys[pygame.K_UP] and player2_y > PADDLE_HEIGHT:
+            if keys[pygame.K_UP] and player2_y > 0:
                 player2_y = player2_y - (paddle_speed)
             if keys[pygame.K_DOWN] and player2_y < SCREEN_HEIGHT - PADDLE_HEIGHT:
                 player2_y = player2_y + (paddle_speed)
@@ -144,11 +144,12 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
                 player1_y = player1_y +(paddle_speed_adjusted)
             
             #Déplacement pour l'ordinateur (joueur 2)
-            if ball_x >= SCREEN_WIDTH/2:
-                if ball_y < (player2_y + PADDLE_HEIGHT/2 + margin) and player2_y > 0 :
-                    player2_y = player2_y - paddle_speed_adjusted
-                if ball_y > (player2_y + PADDLE_HEIGHT/2 - margin) and player2_y < SCREEN_HEIGHT - PADDLE_HEIGHT:
-                    player2_y = player2_y + paddle_speed_adjusted
+            #if ball_x >= SCREEN_WIDTH/2: (si la raquette de l'ordi se deplace que lorsque la balle ait traversee le milieu pour se rendre de son cote)
+            if ball_y < (player2_y + PADDLE_HEIGHT/2 - margin) and player2_y > 0 :
+                player2_y = player2_y - paddle_speed_adjusted
+            elif ball_y > (player2_y + PADDLE_HEIGHT/2 + margin) and player2_y < SCREEN_HEIGHT - PADDLE_HEIGHT:
+                player2_y = player2_y + paddle_speed_adjusted
+            
             #Ne depasse pas les bornes 
             if player2_y <= 0:
                 player2_y = 0
@@ -173,11 +174,11 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
             ball_velocity_y = -1*(ball_velocity_y)
 
         #Collision avec la raquette player 1
-        if ball_x <= PADDLE_WIDTH:
+        if ball_x < PADDLE_WIDTH:
             if player1_y <= ball_y and ball_y <= player1_y + PADDLE_HEIGHT: 
                 ball_velocity_x = -1*(ball_velocity_x)
         #Collision avec la raquette player 2
-        if ball_x + BALL_SIZE >= SCREEN_WIDTH - PADDLE_WIDTH:
+        if ball_x + BALL_SIZE > SCREEN_WIDTH - PADDLE_WIDTH:
             if player2_y <= ball_y and ball_y <= player2_y + PADDLE_HEIGHT: 
                 ball_velocity_x = -1*(ball_velocity_x)
 
