@@ -178,10 +178,12 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         if ball_x - BALL_SIZE <= PADDLE_WIDTH:
             if player1_y <= ball_y and ball_y <= player1_y + PADDLE_HEIGHT: 
                 ball_velocity_x = -1*(ball_velocity_x)
+                ball_x = PADDLE_WIDTH + BALL_SIZE
         #Collision avec la raquette player 2
         if ball_x + BALL_SIZE >= SCREEN_WIDTH - PADDLE_WIDTH:
             if player2_y <= ball_y and ball_y <= player2_y + PADDLE_HEIGHT: 
                 ball_velocity_x = -1*(ball_velocity_x)
+                ball_x = SCREEN_WIDTH - PADDLE_WIDTH - BALL_SIZE
 
         # TODO : GESTION DES POINTS ET RÉINITIALISATION DE LA BALLE
         #
