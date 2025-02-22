@@ -32,7 +32,7 @@ def reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y):
     # Si le joueur 1 a gagné un point, relancer la balle de son côté (à la droite) avec une position aléatoire en y (par en haut ou par en bas), à partir de la ligne pointillée
     
     ball_y = random.randrange(SCREEN_HEIGHT*0.25, SCREEN_HEIGHT-SCREEN_HEIGHT*0.25) #Ajout de 1/4 sinon la balle est trop haut ou bas et ne donne pas assez de place pour le joueur de se deplacer
-    ball_velocity_y = random.choice([-0.75, 0.75])*BALL_SPEED_Y
+    ball_velocity_y = random.choice([-0.75, 0.75])*BALL_SPEED_Y #Direction ahut ou bas aléatoire et vitesse de la balle est ralenti en vélocité_y (sinon la raquette n,a pas le temps de réagir à la vitesse de la balle)
 
     if ball_x > SCREEN_WIDTH :
         ball_velocity_x = BALL_SPEED_X
@@ -135,9 +135,9 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
 
             #Déplacement pour le joueur #1
             if keys[pygame.K_w] and player1_y > 0:
-                player1_y = player1_y -(paddle_speed_adjusted)
+                player1_y = player1_y -(paddle_speed)
             if keys[pygame.K_s] and player1_y < SCREEN_HEIGHT -PADDLE_HEIGHT:
-                player1_y = player1_y +(paddle_speed_adjusted)
+                player1_y = player1_y +(paddle_speed)
 
             #Margin calculation
             margin_list = (random.choices([20,40], [0.1, 0.9], k=1))
