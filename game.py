@@ -38,8 +38,6 @@ def reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y):
     if ball_x < 0 :
         ball_velocity_x = -1*(BALL_SPEED_X)
        
-               
-        
     return ball_x, ball_y, ball_velocity_x, ball_velocity_y
 
 def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y, ball_velocity_x, ball_velocity_y):
@@ -147,7 +145,7 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
             #Déplacement pour l'ordinateur (joueur 2)
             ## Ajout d'une variable predicted_ball_y qui predit 5 frames plus loin ou la balle sera située. 
             ##(Peu donc être plus réactive tout en gardant son côté humain grâce à margin)
-            predicted_ball_y = ball_y + ball_velocity_y * 5 
+            predicted_ball_y = ball_y + ball_velocity_y * 3
             if predicted_ball_y < player2_y + PADDLE_HEIGHT / 2 -margin and player2_y > 0:
                 player2_y -= paddle_speed_adjusted
             elif predicted_ball_y > player2_y + PADDLE_HEIGHT / 2 + margin and player2_y < SCREEN_HEIGHT - PADDLE_HEIGHT:
